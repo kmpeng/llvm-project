@@ -1287,27 +1287,38 @@ float4 floor(float4);
 /// Return the floating-point remainder of the x parameter divided by the y
 /// parameter.
 
-_HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-half fmod(half, half);
-_HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-half2 fmod(half2, half2);
-_HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-half3 fmod(half3, half3);
-_HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-half4 fmod(half4, half4);
+// _HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// half fmod(half, half);
+// _HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// half2 fmod(half2, half2);
+// _HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// half3 fmod(half3, half3);
+// _HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// half4 fmod(half4, half4);
 
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-float fmod(float, float);
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-float2 fmod(float2, float2);
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-float3 fmod(float3, float3);
-_HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
-float4 fmod(float4, float4);
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// float fmod(float, float);
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// float2 fmod(float2, float2);
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// float3 fmod(float3, float3);
+// _HLSL_BUILTIN_ALIAS(__builtin_elementwise_fmod)
+// float4 fmod(float4, float4);
+
+template <int N>
+_HLSL_16BIT_AVAILABILITY(shadermodel, 6.2)
+const inline half fmod(vector<half, N> X, vector<half, N> Y) {
+  return __detail::fmod_vec_impl(X, Y);
+}
+
+template <int N>
+const inline float fmod(vector<float, N> X, vector<float, N> Y) {
+  return __detail::fmod_vec_impl(X, Y);
+}
 
 //===----------------------------------------------------------------------===//
 // frac builtins
